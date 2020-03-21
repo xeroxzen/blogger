@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/bootsrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{{ title }}</title>
+      </head>
+        <body style="background-color:#008B8B">
+          <div class="container">
+            <h4 class="title">{{ message }}</h4>
+            {% block content %}
+
+            {% endblock %}
+          </div>
+          <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+          <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        </body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'weblogger/base.html' %}
+
+<ul class="collection">
+  {% for post in posts %}
+  <li class="collection-item">
+    {% if post.post_img %}
+    <a href="/blog/{{post.id}}"><<img src="{{ post.post_img.url }}" alt="post.title" height="200px" width="300px"></a>
+    <h4 class="title">
+      <a href="/posts/{{post.id}}" class="blue-grey-text hoverable">{{post.title}}</a>
+    </h4>
+    <p class="post-content">{% autoescape off %} {{post.body}} {% endautoescape %}</p>
+
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
