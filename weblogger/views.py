@@ -13,8 +13,9 @@ def homepage(request):
 
     context={
         'title':'Homepage',
-        'posts':posts,
-        'message':'Hello World'
+        'message':'Hello World',
+        'posts': posts,
+        'blog_name':"Andile's View Points"
     }
     return render(request, 'weblogger/index.html', context)
 

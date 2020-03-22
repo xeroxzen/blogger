@@ -1,15 +1,20 @@
 {% extends 'weblogger/base.html' %}
 
-<ul class="collection">
+{% block content %}
+
+<div class="row">
   {% for post in posts %}
-  <li class="collection-item">
-    {% if post.post_img %}
-    <a href="/blog/{{post.id}}"><img src="{{ post.post_img.url }}" alt="post.title" height="200px" width="300px"></a>
-    <h4 class="title">
-      <a href="/posts/{{post.id}}" class="blue-grey-text hoverable">{{post.title}}</a>
-    </h4>
-    <p class="post-content">{% autoescape off %} {{post.body}} {% endautoescape %}</p>
-    {% endif %}
-  </li>
-  {% endfor %}
-</ul>
+			<div class="card text-white bg-info mb-4" style="width: 23rem;">
+				<div class="card-header">
+          <h5 class="card-title"><b>{{post.title}}</b></h5>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{{post.title}}</h5>
+					<p class="card-text">{{post.sub_title}}</p>
+                    <p class="card-text">{% autoescape off %}{{post.body|truncatechars:200}}{% endautoescape %}</p>
+						<a href="/weblogger/read_post.html" class="btn btn-warning">Read Post</a>
+				</div>
+			</div>
+      {% endfor %}
+</div>
+{% endblock %}
