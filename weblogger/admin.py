@@ -1,9 +1,19 @@
 from django.contrib import admin
-
-# Register your models here.
+from django import forms
+from ckeditor.widgets import CKEditorWidget
 from .models import Post, Tag, Category
 
+
+class PostAdminForm(forms.ModelForm):
+    body = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = Post
+        fields = '__all__'
+        exclude = ['slug', 'created_at', 'updated_at']
+
+
 class PostAdmin(admin.ModelAdmin):
+    form = PostAdminForm
     list_display = ('title', 'sub_title', 'author', 'author_twitter_account', 'slug')
     prepopulated_fields = {'title' : ('sub_title', 'author_twitter_account',)}
 
@@ -18,3 +28,4 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Category, CategoryAdmin)    
+# admin.site.register(Post, PostAdmin) 

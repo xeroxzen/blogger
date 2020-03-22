@@ -4,17 +4,21 @@
 
 <div class="row">
   {% for post in posts %}
-			<div class="card text-white bg-info mb-4" style="width: 23rem;">
-				<div class="card-header">
-          <h5 class="card-title"><b>{{post.title}}</b></h5>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">{{post.title}}</h5>
-					<p class="card-text">{{post.sub_title}}</p>
-                    <p class="card-text">{% autoescape off %}{{post.body|truncatechars:200}}{% endautoescape %}</p>
-						<a href="/weblogger/read_post.html" class="btn btn-warning">Read Post</a>
-				</div>
-			</div>
-      {% endfor %}
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      {% if post.image %}
+      <img src="{{post.image.url}}" alt="{{post.img_description}}" height="250px" width="200px" class='img-rounded' style="width: 23rem">
+      {% else %}
+      {% endif %}
+    </div>
+    <div class="caption">
+      <h5>{{post.title}}</h5>
+      <p>{{post.body|truncatechars:200|safe}}</p>
+      <p>
+        <a href="/blog/{{post.id}}" class="btn btn-primary" role="button">Read More</a>
+      </p>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}

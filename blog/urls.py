@@ -20,6 +20,7 @@ from django.conf import settings #new
 
 urlpatterns = [
     path('', include('weblogger.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

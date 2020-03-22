@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 
 # Create your models here.
@@ -15,9 +17,9 @@ class Post(models.Model):
     # author_email_address = models.EmailField(max_length=254)
     title = models.CharField(max_length=100)
     sub_title = models.CharField(max_length=100)
-    post_img = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None)
+    image = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None)
     img_description = models.CharField(max_length=255, null=True)
-    body = models.TextField()
+    body = RichTextUploadingField(null=True)
     category = models.ForeignKey("Category", verbose_name=("Category"), related_name='category', on_delete=models.CASCADE, null=True)
     tag = models.ForeignKey("Tag", verbose_name=("Tag"), related_name='Tag', on_delete=models.CASCADE, null=True)
     slug = models.SlugField(max_length=60, unique=True, editable=False, default=None)
@@ -33,6 +35,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = ("Post")
         verbose_name_plural = ("Posts")
+        ordering = ['-id', 'created_at', 'updated_at', 'title']
 
     def __str__(self):
         return self.title
@@ -43,7 +46,8 @@ class Post(models.Model):
 class Category(models.Model):
     cat_name = models.CharField(max_length=250)
     slug = models.SlugField(max_length=60, unique=True)
-    created_at = models.DateTimeField(auto_now=False)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def save(self, *args, **kwargs):
         name = self.cat_name
@@ -63,8 +67,9 @@ class Category(models.Model):
 class Tag(models.Model):
     tag_name = models.CharField(max_length=250)
     slug = models.SlugField(max_length=60, unique=True)
-    created_at = models.DateTimeField(auto_now=False)
-    
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def save(self, *args, **kwargs):
         name = self.tag_name
         self.slug = slugify(name, allow_unicode=True)

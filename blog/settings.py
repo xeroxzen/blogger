@@ -11,6 +11,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
+# from ckeditor.widgets import CKEditorWidget
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-primary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,6 +44,11 @@ INSTALLED_APPS = [
     # My own apps
     'weblogger',
 
+    # 3rd party apps
+    'crispy_forms',
+    'ckeditor',
+    'ckeditor_uploader',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +56,27 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CKEDITOR_CONFIGS ={
+    'awesome_ckeditor':{
+        'toolbar':'Basic',
+    },
+    "default":{
+        "removePlugins": "stylesheetparser",
+        "toolbar": 'full',
+        # 'height': 300,
+        'width': 900,
+    },
+}
+
+
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_RESTRICT_BY_DATE = True
+
+# widget = CKEditorWidget(config_name='awesome_ckeditor')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,5 +172,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # LOGIN_REDIRECT_URL = '/'
