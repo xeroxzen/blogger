@@ -1,10 +1,11 @@
-from django.shortcuts import render
-from .models import Post
+from django.shortcuts import render, get_object_or_404
+from .models import Post, Comment
+from django.urls import reverse
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 
 # Create your views here.
 
@@ -40,10 +41,31 @@ def all_posts(request):
     return render(request, 'weblogger/blog.html', context)
 
 def read_post(request, id):
-    post = Post.objects.get(id=id)
+    template = 'read_post.html'
+    post = get_object_or_404(Post, id=id)
+    comments = post.comments.filter(active=True)
+    new_comment = None
+
+    # Comment Posted
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+
+            # Create Comment object but don't save to db yet.
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = post
+
+            # Save the comment to db
+            new_comment.save()
+    else:
+        comment_form = CommentForm()           
 
     context={
         'post':post,
+        'comments':comments,
+        'new_comment': new_comment,
+        'comment_form': comment_form
     }
     return render(request, 'weblogger/read_post.html', context)
 

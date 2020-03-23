@@ -1,19 +1,23 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Post, Tag, Category
+from .models import Post, Comment, Tag, Category
 from django.contrib import admin
 from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 
-class PostFormModel(forms.ModelForm):
+class PostForm(forms.ModelForm):
     body = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Post
         fields = '__all__'
         exclude = ['slug', 'created_at', 'updated_at']
-   
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'comment')   
 
 STATUS_CHOICE=[
         ('Draft', 'Draft'),

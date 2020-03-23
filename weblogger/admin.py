@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 from ckeditor.widgets import CKEditorWidget
-from .models import Post, Tag, Category
+from .models import Post, Comment, Tag, Category
 
 
 class PostAdminForm(forms.ModelForm):
@@ -17,6 +17,15 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'sub_title', 'author', 'author_twitter_account', 'slug')
     prepopulated_fields = {'title' : ('sub_title', 'author_twitter_account',)}
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'comment', 'post', 'created_on', 'active')
+    list_filter = ('active', 'created_on')
+    search_fields = ('name', 'email', 'comment')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(active=True)    
+
 class TagAdmin(admin.ModelAdmin):
     list_display = ('tag_name', 'slug')
     # prepopulated_fields = {'id' : ('tag_name', 'slug')}
@@ -27,5 +36,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
-admin.site.register(Category, CategoryAdmin)    
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Comment, CommentAdmin)    
 # admin.site.register(Post, PostAdmin) 
