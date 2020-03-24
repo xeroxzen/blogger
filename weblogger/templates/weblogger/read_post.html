@@ -2,49 +2,47 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
-  <div class="jumbotron grey">
+<!-- <div class="container"> -->
+  <div class="jumbotron jumbotron-fluid">
     <h3>{{post.title}}</h3>
     <h5>{{post.sub_title}}</h5>
   </div>
 
-  <div class="col-md-12">
-    {% if post.image %}
-    <img src="{{post.image.url}}" alt="{{post.img_description}}" class='img-rounded img-fluid' height="400">
-    {% endif %}
-    {% if post.img_description %}
-    <p style="font-style:italic"><small>{{post.img_description}}</small></p>
-    {% else %}
-    <p style="font-style:italic"><small>This is a copyrighted image</small></p>
-    {% endif %}
-    <br>
-    <p class='post-author'>
-      <span class='glyphicon glyphicon-user'>{{post.author}} |</span>
-      <span class='glyphicon glyphicon-thumbs-up'><a href="https://twitter.com/{{post.author_twitter_account}}">{{post.author_twitter_account}}</a></span>
-    </p>
-    <p class='post-date'>
-      <span class='glyphicon glyphicon-time'>{{ post.created_at|date:"l, j F Y" }}</span>
-    </p>
-    <hr>
-    <p>{{post.body|safe}}</p>
-  </div>
+    <div class="col-md-12 card mb-4  mt-3 ">
+      <div class="card-body">
+
+        {% if post.image %}
+        <img src="{{post.image.url}}" alt="{{post.img_description}}" class='img-rounded img-fluid' height="400">
+        {% endif %}
+        {% if post.img_description %}
+        <p style="font-style:italic"><small>{{post.img_description}}</small></p>
+        {% else %}
+        <p style="font-style:italic"><small>This is a copyrighted image</small></p>
+        {% endif %}
+        <br>
+        <p class='post-author'>
+          <span class='glyphicon glyphicon-user'>{{post.author}} |</span>
+          <span class='glyphicon glyphicon-thumbs-up'><a href="https://twitter.com/{{post.author_twitter_account}}">{{post.author_twitter_account}}</a></span>
+        </p>
+        <p class='post-date'>
+          <span class='glyphicon glyphicon-time'>{{ post.created_at|date:"l, j F Y" }}</span>
+        </p>
+        <hr>
+        <p>{{post.body|safe}}</p>
+      </div>
+    </div>
 
   <br>
   <hr>
 
-  <div class="col-md-9">
-    <h3>Comments</h3>
-    <hr>
-    <p>Here shall comments...</p>
+  <div class="col-md-12 mb-3  mt-3">
+    <h3>{{ comments.count }} Comment{{comments.count | pluralize:"s" }}</h3>
   </div>
-</div>
+<!-- </div> -->
 <!-- Comments End here -->
-<div class="container">
+<!-- <div class="container"> -->
   <div class="col-md-12 card mb-4  mt-3 ">
       <div class="card-body">
-        <!-- comments -->
-        <h2>{{ comments.count }} comments</h2>
-
         {% for comment in comments %}
         <div class="comments" style="padding: 10px;">
           <p class="font-weight-bold">
@@ -69,11 +67,8 @@
       <form method="post" style="margin-top: 1.3em;">
         {{ comment_form|crispy}}
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       {% endif %}
-    <!-- </div> -->
-  </div>
-</div>
-
+    </div>
 {% endblock%}

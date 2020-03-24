@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<div class="row">
+<div class="row justify-content-left">
   {% for post in posts %}
-  <div class="col-sm-6 col-md-3">
+  <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       {% if post.image %}
-      <img src="{{post.image.url}}" alt="{{post.img_description}}" height="250px" width="200px" class='img-rounded' style="width: 23rem">
+      <img src="{{post.image.url}}" alt="{{post.img_description}}" class='img-fluid img-rounded' style="width: 23rem">
       {% else %}
       {% endif %}
     </div>
