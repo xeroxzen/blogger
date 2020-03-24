@@ -22,7 +22,7 @@ class Post(models.Model):
     img_description = models.CharField(max_length=255, null=True)
     body = RichTextUploadingField(null=True)
     category = models.ForeignKey("Category", verbose_name=("Category"), related_name='category', on_delete=models.CASCADE, null=True)
-    tag = models.ForeignKey("Tag", verbose_name=("Tag"), related_name='Tag', on_delete=models.CASCADE, null=True)
+    tag = models.ForeignKey("Tag", verbose_name=("Tag"), related_name='tag', on_delete=models.CASCADE, null=True)
     slug = models.SlugField(max_length=60, unique=True, editable=False, default=None)
     status = models.CharField(max_length=50, choices=STATUS_CHOICE)
     created_at = models.DateTimeField(auto_now=True)
@@ -44,10 +44,14 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("Post_detail", kwargs={"pk": self.pk})
 
+    def snippet(self):
+        return self.body[0:200]    
+
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
     name = models.CharField(max_length=80)
     email = models.EmailField()
+    website = models.URLField(max_length=200, null=True)
     comment = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)

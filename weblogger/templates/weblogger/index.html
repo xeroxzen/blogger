@@ -1,24 +1,19 @@
-{% extends 'weblogger/base.html' %}
-
+{% extends "weblogger/base.html" %}
 {% block content %}
 
-<div class="row justify-content-left">
-  {% for post in posts %}
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      {% if post.image %}
-      <img src="{{post.image.url}}" alt="{{post.img_description}}" class='img-fluid img-rounded' style="width: 23rem">
-      {% else %}
-      {% endif %}
-    </div>
-    <div class="caption">
-      <h5>{{post.title}}</h5>
-      <p>{{post.body|truncatechars:200|safe}}</p>
-      <p>
-        <a href="/blog/{{post.id}}" class="btn btn-primary" role="button">Read More</a>
-      </p>
+{% for post in posts %}
+<div class="row row-cols-3">
+  <div class="col-sm-6 col-md-6 center">
+    <div class="card mb-3 text-dark">
+      <img src="{{post.image.url}}" alt="{{post.img_description}}" class="img-fluid img-rounded">
+      <div class="card-body">
+        <h3 class="card-title"><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h3>
+        <h6 class="card-subtitle mb-3 text-muted">{{post.sub_title}}</h6>
+        <p class="card-text">{{post.body|truncatechars:200|safe}}</p>
+        <!-- <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">Read More</a> -->
+      </div>
     </div>
   </div>
-  {% endfor %}
 </div>
+{% endfor %}
 {% endblock %}

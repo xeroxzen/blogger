@@ -1,22 +1,33 @@
-p{
+body{
+  font-family: Georgia;
+  /* font-weight: lighter; */
+  font-size:14px;
+}
+a:hover{
+  text-decoration: none;
+  color:orange;
+}
+
+.comments{
+  font-family: arial;
+  font-size: 13px;
+}
+.post-author, .post-date{
+  font-family: Georgia;
+  font-size:15px;
+}
+
+/*p{
   font-family: Georgia;
   font-size: 14px;
 }
 
-.post-author, .post-date{
-  color: #FF1493;
-  font-size:13px;
-  font-family: Georgia;
-}
+
 a{
   color:inherit;
 }
-a:hover{
-  text-decoration: none;
-}
-
 .post{
   font-family:Georgia;
   font-size:12px;
   font-style:normal;
-}
+} */

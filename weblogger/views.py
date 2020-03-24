@@ -40,9 +40,9 @@ def all_posts(request):
 
     return render(request, 'weblogger/blog.html', context)
 
-def read_post(request, id):
+def read_post(request, slug):
     template = 'read_post.html'
-    post = get_object_or_404(Post, id=id)
+    post = get_object_or_404(Post, slug=slug)
     comments = post.comments.filter(active=True)
     new_comment = None
 
@@ -102,6 +102,28 @@ def post_form(request):
         'form':form
     }
 
-    return render(request, 'weblogger/form.html', context)            
+    return render(request, 'weblogger/form.html', context)
+
+
+def get_about(request):
+    template = 'weblogger/about.html'
+
+    context={
+        'title':'About'
+    }                
+
+    return render(request, template, context)
+
+def get_post_by_tag(request, tag):
+
+    posts = Post.objects.get(tag='Elon Musk')
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+
+    context={
+        'posts':posts
+    }
+    return render(request, 'weblogger/blog.html', context)    
 
 
