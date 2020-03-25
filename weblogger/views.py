@@ -75,24 +75,16 @@ def post_form(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            post = Post.objects.create(
-                title = form.cleaned_data.get('title'),
-                sub_title = form.cleaned_data.get('sub_title'),
-                author_twitter_account = form.cleaned_data.get('author_twitter_account'),
-                image = form.cleaned_data.get('image'),
-                img_description = form.cleaned_data.get('img_description'),
-                body = form.cleaned_data.get('body'),
-                category = form.cleaned_data.get('category'),
-                tag = form.cleaned_data.get('tag'),
-                status = form.cleaned_data.get('status')
-            )
+            # Create post object but don't save yet.
+            new_post = form.save(commit=False)
 
-            post.user = request.user
-            post.save()
+            new_post.user = request.user
+            new_post.save()
+            # post.save()
 
             messages.success(request, 'Post successfully added', extra_tags='alert')
 
-            return HttpResponseRedirect('weblogger/index.html')
+            return HttpResponseRedirect('/')
         else:
             messages.warning(request, 'Please correct the encountered errors', extra_tags='alerts')
     else:

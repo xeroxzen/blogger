@@ -11,58 +11,58 @@ class PostForm(forms.ModelForm):
     body = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Post
-        fields = '__all__'
-        exclude = ['slug', 'created_at', 'updated_at']
+        fields = ('author', 'author_twitter_account', 'title', 'sub_title', 'image', 'img_description', 'body', 'tag', 'category', 'status')
+        # exclude = ['slug', 'created_at', 'updated_at']
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('name', 'email', 'comment')   
+        fields = ('name', 'email', 'website','comment')   
 
 STATUS_CHOICE=[
         ('Draft', 'Draft'),
         ('Published', 'Published')
     ]
 
-class PostForm(forms.Form):
-    # User = settings.AUTH_USER_MODEL
-    # author = forms.CharField(required=True, widget=forms.TextInput(attrs={
-    #     'class': 'form-group col-md-3'
-    # }))
+# class PostForm(forms.Form):
+#     # User = settings.AUTH_USER_MODEL
+#     # author = forms.CharField(required=True, widget=forms.TextInput(attrs={
+#     #     'class': 'form-group col-md-3'
+#     # }))
 
-    author_twitter_account = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class':'form-group col-md-6'
-    }))
+#     author_twitter_account = forms.CharField(required=False, widget=forms.TextInput(attrs={
+#         'class':'form-group col-md-6'
+#     }))
     
-    title = forms.CharField(required=True, widget=forms.TextInput(attrs={
-        'class': 'form-group col-md-6'
-    }))
+#     title = forms.CharField(required=True, widget=forms.TextInput(attrs={
+#         'class': 'form-group col-md-6'
+#     }))
     
-    sub_title = forms.CharField(required=True, widget=forms.TextInput(attrs={
-        'class':'form-group col-md-6'
-    }))
+#     sub_title = forms.CharField(required=True, widget=forms.TextInput(attrs={
+#         'class':'form-group col-md-6'
+#     }))
     
-    image = forms.FileField(max_length=None, required=False)
+#     image = forms.FileField(max_length=None, required=False)
     
-    img_description = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-group col-md-6'
-    }))
+#     img_description = forms.CharField(required=False, widget=forms.TextInput(attrs={
+#         'class': 'form-group col-md-6'
+#     }))
 
-    body = forms.CharField(required=True, widget=forms.Textarea(attrs={
-        'class': 'form-group col-md-6'
-    }))
+#     body = forms.CharField(required=True, widget=forms.Textarea(attrs={
+#         'class': 'form-group col-md-6'
+#     }))
     
-    category = forms.ModelChoiceField(required=True, queryset=Category.objects.all(), widget=forms.Select(attrs={
-        'class': 'form-group col-md-6'
-    }))
+#     category = forms.ModelChoiceField(required=True, queryset=Category.objects.all(), widget=forms.Select(attrs={
+#         'class': 'form-group col-md-6'
+#     }))
     
-    tag = forms.ModelChoiceField(queryset=Tag.objects.all(), required=True, widget=forms.Select(attrs={
-        'class': 'form-group col-md-6'
-    }))
+#     tag = forms.ModelChoiceField(queryset=Tag.objects.all(), required=True, widget=forms.Select(attrs={
+#         'class': 'form-group col-md-6'
+#     }))
      
-    status = forms.CharField(required=True, widget=forms.Select(choices=STATUS_CHOICE, attrs={
-        'class': 'form-group col-md-3'
-    }))
+#     status = forms.CharField(required=True, widget=forms.Select(choices=STATUS_CHOICE, attrs={
+#         'class': 'form-group col-md-3'
+#     }))
 
-    def __init__(self, *args, **kwargs):
-        super(PostForm, self).__init__(*args, **kwargs)
+#     def __init__(self, *args, **kwargs):
+#         super(PostForm, self).__init__(*args, **kwargs)

@@ -7,7 +7,7 @@
       <div class="card-body">
 
         {% if post.image %}
-        <img src="{{post.image.url}}" alt="{{post.img_description}}" class='img-rounded img-fluid' height="400">
+        <img src="{{post.image.url}}" alt="{{post.img_description}}" class='img-rounded img-fluid center' height="400">
         {% endif %}
         {% if post.img_description %}
         <p style="font-style:italic"><small>{{post.img_description}}</small></p>
@@ -17,8 +17,8 @@
         <br>
 
         <div class="page-header">
-          <h4 class="text-uppercase">{{post.title}}</h4>
-          <h5 style='font-style:italic;' class="text-info">{{post.sub_title}}</h5>
+          <h5 class="text-uppercase">{{post.title}}</h5>
+          <h6 style='font-style:italic;' class="text-info">{{post.sub_title}}</h6>
         </div>
         <br>
 
@@ -33,7 +33,7 @@
         <hr>
         <p>{{post.body|safe}}</p>
 
-          Tags: <a href="{{post.tag}}">{{post.tag}}</a> <br>
+          Tags: <a href="{{ post.tag }}">{{post.tag}}</a> <br>
           Category: <a href="{{post.category}}">{{post.category}}</a>
 
 
@@ -80,4 +80,5 @@
       <br>
       {% endif %}
     </div>
+    <br>
 {% endblock%}
