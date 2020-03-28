@@ -19,10 +19,10 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     sub_title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None, blank=True)
-    img_description = models.CharField(max_length=255, null=True)
-    body = RichTextUploadingField(null=True)
+    img_description = models.CharField(max_length=255, null=False, default='')
+    content = RichTextUploadingField(null=False, default='')
     category = models.ForeignKey("Category", verbose_name=("Category"), related_name='category', on_delete=models.CASCADE, null=True)
-    tag = models.ForeignKey("Tag", verbose_name=("Tag"), related_name='tag', on_delete=models.CASCADE, null=True)
+    tag = models.ManyToManyField("Tag", verbose_name=("Tag"), related_name='tag')
     slug = models.SlugField(max_length=60, unique=True, editable=False, default=None)
     status = models.CharField(max_length=50, choices=STATUS_CHOICE)
     created_at = models.DateTimeField(auto_now=True)
@@ -45,7 +45,7 @@ class Post(models.Model):
         return reverse("Post_detail", kwargs={"pk": self.pk})
 
     def snippet(self):
-        return self.body[0:200]    
+        return self.content[0:200]    
 
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
@@ -64,7 +64,7 @@ class Comment(models.Model):
 
 class Category(models.Model):
     cat_name = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=60, unique=True)
+    slug = models.SlugField(max_length=60, unique=True, editable=False, default=None)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -85,7 +85,7 @@ class Category(models.Model):
 
 class Tag(models.Model):
     tag_name = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=60, unique=True)
+    slug = models.SlugField(max_length=60, unique=True, editable=False, default=None)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
 

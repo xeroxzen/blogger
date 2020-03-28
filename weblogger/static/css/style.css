@@ -1,3 +1,20 @@
+/*-----------Non-Retina Screens-------------*/
+@media screen
+    and (min-width: 100px)
+    and (max-width: 1600px)
+    and (-webkit-min-device-pixel-ratio: 1){
+
+    }
+
+/*-----------Retina Displays---------------*/
+@media screen
+    and (min-width: 100px)
+    and (max-width: 1600px)
+    and (-webkit-min-device-pixel-ratio:2)
+    and (min-resolution: 192dpi){
+
+    }
+
 body{
   font-family: Georgia;
   /* font-weight: lighter; */
@@ -16,6 +33,75 @@ a:hover{
   font-family: Georgia;
   font-size:15px;
 }
+.post-tags{
+  color: green;
+  float:right;
+}
+.lead{
+  text-align:right;
+}
+.post-tags:hover{
+  color: orange;
+}
+.post-title{
+  color:#778899;
+  font-weight: lighter;
+  font-family: serif;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 767px) {
+ .title {
+      font-size: 15px;
+  }
+  body{
+    font-family: Georgia;
+    font-size: 12px;
+  }
+  .subtitle{
+    font-size: 14px;
+    font-style: italic;
+  }
+  .post-author, .post-date{
+    font-family: Georgia;
+    font-size:12px;
+  }
+  p{
+    font-family: Georgia;
+    font-size:12px;
+  }
+  .post-title{
+    color:#778899;
+    font-weight: lighter;
+    font-family: serif;
+    font-size: 70%;
+  }
+  .card-subtitle{
+    font-weight:200;
+    font-family: Georgia;
+    font-size: 14px;
+  }
+  .card-text{
+    font-family:Georgia;
+    font-size:80%;
+  }
+  .comments{
+    font-family: arial;
+    font-size: 13px;
+  }
+  .comments-count, .comments-header{
+    font-family: Georgia;
+    font-size: 17px;
+  }
+}
+
+/* @media only screen and (min-width: 300px) and (max-width: 1023px) {
+ .post-title h1, h2, h3, h4, h5, h6{
+      font-size: 90%;
+  }
+  body, p{
+    font-size: 80%;
+  }
+} */
 
 /*p{
   font-family: Georgia;

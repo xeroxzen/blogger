@@ -17,8 +17,8 @@
         <br>
 
         <div class="page-header">
-          <h5 class="text-uppercase">{{post.title}}</h5>
-          <h6 style='font-style:italic;' class="text-info">{{post.sub_title}}</h6>
+          <h5 class="text-uppercase title">{{post.title}}</h5>
+          <h6 class='subtitle' style='font-style:italic;' class="text-info">{{post.sub_title}}</h6>
         </div>
         <br>
 
@@ -28,13 +28,18 @@
           <span class='glyphicon glyphicon-thumbs-up text-danger'>Follow<a href="https://twitter.com/{{post.author_twitter_account}}"> {{post.author_twitter_account}}</a></span>
         </p>
         <p class='post-date'>
-          <span class='text-muted font-weight-normal glyphicon glyphicon-time'>{{ post.created_at|date:"l, j F Y" }}</span>
+          <span class='text-muted font-weight-normal glyphicon glyphicon-time'>{{ post.created_at }}</span>
         </p>
         <hr>
-        <p>{{post.body|safe}}</p>
+        <p class='content'>{{post.content|safe}}</p>
 
-          Tags: <a href="{{ post.tag }}">{{post.tag}}</a> <br>
-          Category: <a href="{{post.category}}">{{post.category}}</a>
+        <p class="lead">Tags</p>
+          {% for tag in post.tag.all %}
+            <a href="{{ tag.slug }}" class='post-tags'>{{ tag }}</a> <br>
+          {% endfor %}
+          <br>
+          <p class="lead">Category</p>
+          <a class="post-tags" href="{{post.category.slug}}">{{post.category}}</a>
 
 
       </div>
@@ -44,7 +49,7 @@
   <hr>
 
   <div class="col-md-12 mb-3  mt-3">
-    <h3>{{ comments.count }} Comment{{comments.count | pluralize:"s" }}</h3>
+    <h3 class='comments-count'>{{ comments.count }} Comment{{comments.count | pluralize:"s" }}</h3>
   </div>
 <!-- </div> -->
 <!-- Comments End here -->
@@ -71,7 +76,7 @@
         Your comment is awaiting moderation
       </div>
       {% else %}
-      <h3>Leave a comment</h3>
+      <h3 class='comments-header'>Leave a comment</h3>
       <form method="post" style="margin-top: 1.3em;">
         {{ comment_form|crispy}}
         {% csrf_token %}

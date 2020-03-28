@@ -11,7 +11,7 @@ class PostForm(forms.ModelForm):
     body = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Post
-        fields = ('author', 'author_twitter_account', 'title', 'sub_title', 'image', 'img_description', 'body', 'tag', 'category', 'status')
+        fields = ('author', 'author_twitter_account', 'title', 'sub_title', 'image', 'img_description', 'content', 'tag', 'category', 'status')
         # exclude = ['slug', 'created_at', 'updated_at']
 
 class CommentForm(forms.ModelForm):

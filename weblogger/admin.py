@@ -5,17 +5,17 @@ from .models import Post, Comment, Tag, Category
 
 
 class PostAdminForm(forms.ModelForm):
-    body = forms.CharField(widget=CKEditorWidget())
+    content = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Post
-        fields = '__all__'
-        exclude = ['slug', 'created_at', 'updated_at']
+        fields = ('author', 'author_twitter_account', 'title', 'sub_title', 'image', 'img_description', 'content', 'tag', 'category', 'status')
 
 
 class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
     list_display = ('title', 'sub_title', 'author', 'author_twitter_account', 'slug')
     prepopulated_fields = {'title' : ('sub_title', 'author_twitter_account',)}
+    search_fields = ('title', 'sub_title', 'content')
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'comment', 'post', 'created_on', 'active')

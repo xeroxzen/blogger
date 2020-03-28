@@ -1,17 +1,18 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment
+from .models import Post, Comment, Category, Tag
 from django.urls import reverse
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from .forms import PostForm, CommentForm
+from django.views.generic import ListView
 
 # Create your views here.
 
 def homepage(request):
     posts = Post.objects.all()
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 15)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
 
@@ -25,7 +26,7 @@ def homepage(request):
 
 def all_posts(request):
     posts = Post.objects.all()
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 20)
     if request.method == 'GET':
         try:
             page = request.GET.get('page')
@@ -39,6 +40,15 @@ def all_posts(request):
     }             
 
     return render(request, 'weblogger/blog.html', context)
+
+def tag(request, slug):
+    tags = get_object_or_404(Tag, slug=slug)
+
+    context={
+        'tags': tags
+    }
+
+    return render(request, 'weblogger/tags.html', context)
 
 def read_post(request, slug):
     template = 'read_post.html'
@@ -69,7 +79,7 @@ def read_post(request, slug):
     }
     return render(request, 'weblogger/read_post.html', context)
 
-# @login_required
+@login_required
 def post_form(request):
     form = PostForm()
     if request.method == 'POST':
@@ -106,16 +116,14 @@ def get_about(request):
 
     return render(request, template, context)
 
-def get_post_by_tag(request, tag):
+class CategoryListView(ListView):
+    model = Post
+    template_name = 'blog/blog_category.html'
 
-    posts = Post.objects.get(tag='Elon Musk')
-    paginator = Paginator(posts, 10)
-    page = request.GET.get('page')
-    posts = paginator.get_page(page)
+    def get_queryset(self):
+        category = get_object_or_404(Category, id=self.kwargs.get('category__name'))
+        return Post.objects.filter(category_id=self.kwargs.get('pk'))
+    
 
-    context={
-        'posts':posts
-    }
-    return render(request, 'weblogger/blog.html', context)    
 
 
