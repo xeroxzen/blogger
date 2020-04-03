@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-# from ckeditor.fields import RichTextField
+from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 
@@ -18,9 +18,9 @@ class Post(models.Model):
     # author_email_address = models.EmailField(max_length=254)
     title = models.CharField(max_length=100)
     sub_title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, height_field=None, width_field=None, max_length=None, blank=False)
     img_description = models.CharField(max_length=255, null=False, default='')
-    content = RichTextUploadingField(null=False, default='')
+    content = RichTextUploadingField()
     category = models.ForeignKey("Category", verbose_name=("Category"), related_name='category', on_delete=models.CASCADE, null=True)
     tag = models.ManyToManyField("Tag", verbose_name=("Tag"), related_name='tag')
     slug = models.SlugField(max_length=60, unique=True, editable=False, default=None)
