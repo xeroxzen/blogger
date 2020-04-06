@@ -61,7 +61,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CKEDITOR_CONFIGS ={
     "default":{
-        # "removePlugins": "stylesheetparser",
+        "removePlugins": "stylesheetparser",
         "toolbar": 'full',
         # 'height': 300,
         'width': 900,

@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class WebloggerConfig(AppConfig):
-    name = 'weblogger'
+    # name = 'weblogger'
+    name = 'A-Lister'
