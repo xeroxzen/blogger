@@ -1,19 +1,12 @@
 from django.contrib import admin
-from django import forms
-from ckeditor.widgets import CKEditorWidget
+# from django import forms
+# from ckeditor.widgets import CKEditorWidget
 from .models import Post, Comment, Tag, Category
 
 
-class PostAdminForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget())
-    class Meta:
-        model = Post
-        fields = ('author', 'author_twitter_account', 'title', 'sub_title', 'image', 'img_description', 'content', 'tag', 'category', 'status')
-
-
 class PostAdmin(admin.ModelAdmin):
-    form = PostAdminForm
-    list_display = ('title', 'sub_title', 'author', 'author_twitter_account', 'slug')
+    # form = PostAdminForm
+    list_display = ('title', 'sub_title', 'author', 'slug', 'status')
     prepopulated_fields = {'title' : ('sub_title', 'author_twitter_account',)}
     search_fields = ('title', 'sub_title', 'content')
 

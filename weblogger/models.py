@@ -7,7 +7,7 @@ from django.conf import settings
 
 # Create your models here.
 class Post(models.Model):
-    STATUS_CHOICE =(
+    STATUS_CHOICE = (
         ('PUBLISHED', 'Published'),
         ('DRAFT', 'Draft')
     )

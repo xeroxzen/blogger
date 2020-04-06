@@ -25,7 +25,7 @@ def homepage(request):
     return render(request, 'weblogger/index.html', context)
 
 def all_posts(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(status='PUBLISHED')
     paginator = Paginator(posts, 20)
     if request.method == 'GET':
         try:

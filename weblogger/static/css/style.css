@@ -17,8 +17,11 @@
 
 body{
   font-family: Georgia;
-  /* font-weight: lighter; */
+  background-color:#D3D3D3;
   font-size:14px;
+}
+img:hover{
+  /* something goes here */
 }
 a:hover{
   text-decoration: none;
@@ -56,6 +59,7 @@ a:hover{
   body{
     font-family: Georgia;
     font-size: 12px;
+    background-color:#DCDCDC;
   }
   .subtitle{
     font-size: 14px;
