@@ -12,7 +12,7 @@ from django.views.generic import ListView
 
 def homepage(request):
     posts = Post.objects.all()
-    paginator = Paginator(posts, 15)
+    paginator = Paginator(posts, 5)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
 

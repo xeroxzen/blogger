@@ -30,13 +30,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'u7h9r0g5x@k0(y-^z@+e8nb_hh@9fe8=-sg5=j&2%a&ag&$$x^'
+
+with open('/home/xeroxzen/Documents/secret.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# SECURE_REFERRER_POLICY = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = False
 
 # Application definition
 
@@ -70,8 +76,8 @@ CKEDITOR_CONFIGS ={
 
 
 # CKEDITOR_RESTRICT_BY_USER = True
-CKEDITOR_BROWSE_SHOW_DIRS = True
-CKEDITOR_RESTRICT_BY_DATE = True
+# CKEDITOR_BROWSE_SHOW_DIRS = True
+# CKEDITOR_RESTRICT_BY_DATE = True
 
 # widget = CKEditorWidget(config_name='awesome_ckeditor')
 
@@ -116,8 +122,8 @@ DATABASES = {
     # }
 
     'default': {
-        'NAME': 'blogger',
         'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blogger',
         'USER': 'xeroxzen',
         'PASSWORD': '2020',
         'HOST': 'localhost',

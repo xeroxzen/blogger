@@ -1,68 +1,85 @@
-{% extends 'weblogger/base.html' %}
-
 {%block content %}
-<div class="row">
-  <div class="col-md-12">
-    <div class="card mb-3 text-dark">
-      <div class="card-body">
-        <h4 class='card-title'>About Me</h4>
-        <p>
-          Are you tired of being manipulated and taken advantage of? Do you
-  sometimes feel you're not being listened to and don't get the respect
-  and cooperation that you deserve? If you've ever wanted the ability
-  to take control of every conversation and situation, now you've got it.
-  Why go through life letting others lead you, when you can use the
-  greatest psychological secrets to make things go your way. . . get
-  anyone to do anything . . . and never feel powerless again!
-  Here, you enter a world where psychology reigns and detecting
-  deceit, changing a person's mind, or controlling a situation are re-
-  duced to an easy-to-follow formula—a series of simple techniques
-  and tactics.
-        </p>
-<p>
-  You will be able to use the most complete and advanced psycho-
-  logical strategies to enable your mind to become your greatest
-  weapon. Most exciting, you should know that we're not talking about
-  "tricks" that work sometimes on some people. This book contains only
-  specific psychological tactics governing human behaviour that will
-  let you outsmart, outthink, and outmanoeuvre. . . anyone,
-  anyplace, anytime. These are carefully formulated tactics based on
-  specific psychological principles and can be applied to any situation.
-  Imagine how easy life would be if you were able to predict and
-  control the outcome of any encounter. And instead of wondering
-  what was going to happen, you applied proven, fast-working psycho-
-  logical tactics to gain complete and total cooperation from all people
-  in any situation.
-</p>
 
-<p>
-  Have you ever asked someone to help you out and much to your
-  surprise she happily obliged? Or perhaps you wanted to make a
-  good impression and the person found you completely irresistible?
-  You wonder if it was luck, the person's mood, or the situation—when
-  in actuality you likely applied principles that govern human
-  behaviour without even knowing it. The good news is that you can
-  duplicate those same responses, systematically, any time you want,
-  with anyone.
-</p>
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>About Andile</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'css/inherited_main.css' %}" />
+		<!-- <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" /> -->
+	</head>
+	<body class="subpage">
 
-<p>
-  To make it easy for you to learn how to apply these psychological
-  secrets, the book is divided into forty mini-chapters, each governing
-  various real-life situations. And best of all, once you become familiar
-  with the psychological principles, you'll see that you can use the
-  techniques to be successful anytime, in any situation that you find
-  yourself in.
-</p>
+		<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="/">A-Lister <span>by Andile</span></a></div>
+				<a href="#menu">Menu</a>
+			</header>
 
-<p>
-  Get ready to make life easy and have things go your way, when
-  you . . . Get Anyone to Do Anything . . . and Never Feel Powerless
-  Again!
-</p>
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/">Home</a></li>
+					<li><a href="/blog/">Blog</a></li>
+					<li><a href="/contact/">Contact</a></li>
+				</ul>
+			</nav>
 
-      </div>
-    </div>
-  </div>
-</div>
+		<!-- One -->
+			<section id="One" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>Some Intel on the author</p>
+						<h2>About</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+							<header class="align-center">
+								<p>I am Andile Mbele aka Google Jr</p>
+								<h2>About Me</h2>
+							</header>
+							<p>I am Andile. That's just about all I can say about myself, hahaha. Well I am not sure what  is expected of me but ok, let me see.</p>
+							<p>First and foremost, I am your typical nerd. I try to deny it as quick as possible but it is the fact. I am a self driven individual, a goal getter. I believe in hardwork, well simply because the more you work the closer you get to your intended goal or goals. I have a lot of ambitious goals and therefore I have no other choice but to work hard and smarter too.</p>
+
+							<p>By training I am a technologist, by default I am a avid learner. I love computers and technology. I am happy to be part of the generation that got to live in the pic of technology. My interests mainly are in programming. I have experience and some level of exposure in some of the world renowned technologies today including Python, Nodejs, PHP, Visual Basic .NET, C++ and JavaScript. The key technology areas I am most fascinated by including web app development, cloud computing, Internet of Things (IoT), Embedded Systems, Artificial Intelligence, Machine Learning, Data Science, Data Visualisation, Blockchain and Quantum Computing.</p>
+
+							<p>I am a self starter, a workaholic if you like. My dreams are to be a renowned figure in the technology space. I dream of running my own companies some day soon.</p>
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Copyrighted. All rights reserved.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+		<script src="{% static 'js/skel.min.js' %}"></script>
+		<script src="{% static 'js/util.js' %}"></script>
+		<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>
 {% endblock %}
