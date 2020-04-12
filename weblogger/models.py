@@ -53,7 +53,7 @@ class Comment(models.Model):
     email = models.EmailField()
     website = models.URLField(max_length=200, null=True, blank=True)
     comment = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=False)
 
     class Meta:
@@ -103,3 +103,15 @@ class Tag(models.Model):
 
     def get_absolute_url(self):
         return reverse("Tag_detail", kwargs={"pk": self.pk})
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name_plural = 'Messages'

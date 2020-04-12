@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, ContactForm
 from django.views.generic import ListView
 
 # Create your views here.
@@ -125,5 +125,23 @@ class CategoryListView(ListView):
         return Post.objects.filter(category_id=self.kwargs.get('pk'))
     
 
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Messages sent successfully', extra_tags='alert')
+            return HttpResponseRedirect('/blog')
+        else:
+            messages.warning(request, 'Message not sent, try again', extra_tags='alert')    
+    else:
+        form = ContactForm
 
+    context={
+        'form':form,
+        'button': 'Send Message',
+        'title': 'Get In Touch'
+    }
+
+    return render(request, 'weblogger/form.html', context)            
 

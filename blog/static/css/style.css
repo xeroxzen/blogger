@@ -1,19 +1,134 @@
+/*-----------Non-Retina Screens-------------*/
+@media screen
+    and (min-width: 100px)
+    and (max-width: 1600px)
+    and (-webkit-min-device-pixel-ratio: 1){
+
+    }
+
+/*-----------Retina Displays---------------*/
+@media screen
+    and (min-width: 100px)
+    and (max-width: 1600px)
+    and (-webkit-min-device-pixel-ratio:2)
+    and (min-resolution: 192dpi){
+
+    }
+
 body{
-    zoom: 90%;
-}
-p{
-  font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: Georgia;
+  background-color:#D3D3D3;
+  font-size:14px;
 }
 
-.post-author, .post-date{
-  color: #FF1493;
-  font-family: "Times New Roman";
+img:hover{
+  /* something goes here */
 }
+a{
+  text-decoration-style: none;
+  text-decoration-line: none;
+}
+a:hover{
+  text-decoration-style: none;
+  text-decoration-line: none;
+  color:orange;
+}
+
+.comments{
+  font-family: arial;
+  font-size: 13px;
+}
+.post-author, .post-date{
+  font-family: Georgia;
+  font-size:15px;
+}
+
+.lead{
+  text-align:left;
+}
+.post-tags{
+  color: green;
+  float:left;
+}
+.post-tags:hover{
+  color: orange;
+}
+.post-title{
+  color:#778899;
+  font-weight: lighter;
+  font-family: serif;
+}
+.content{
+ font-family: Georgia;
+ font-size: 14px;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 767px) {
+ .title {
+      font-size: 15px;
+  }
+  body{
+    font-family: Georgia;
+    font-size: 12px;
+    background-color:#DCDCDC;
+  }
+  .subtitle{
+    font-size: 14px;
+    font-style: italic;
+  }
+  .post-author, .post-date{
+    font-family: Georgia;
+    font-size:12px;
+  }
+  p{
+    font-family: Georgia;
+    font-size:12px;
+  }
+  .post-title{
+    color:#778899;
+    font-weight: lighter;
+    font-family: serif;
+    font-size: 70%;
+  }
+  .card-subtitle{
+    font-weight:200;
+    font-family: Georgia;
+    font-size: 14px;
+  }
+  .card-text{
+    font-family:Georgia;
+    font-size:80%;
+  }
+  .comments{
+    font-family: arial;
+    font-size: 13px;
+  }
+  .comments-count, .comments-header{
+    font-family: Georgia;
+    font-size: 17px;
+  }
+}
+
+/* @media only screen and (min-width: 300px) and (max-width: 1023px) {
+ .post-title h1, h2, h3, h4, h5, h6{
+      font-size: 90%;
+  }
+  body, p{
+    font-size: 80%;
+  }
+} */
+
+/*p{
+  font-family: Georgia;
+  font-size: 14px;
+}
+
+
 a{
   color:inherit;
 }
-a:hover{
-  text-decoration: none;
-}
+.post{
+  font-family:Georgia;
+  font-size:12px;
+  font-style:normal;
+} */

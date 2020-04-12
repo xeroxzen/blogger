@@ -1,7 +1,7 @@
 from django.contrib import admin
 # from django import forms
 # from ckeditor.widgets import CKEditorWidget
-from .models import Post, Comment, Tag, Category
+from .models import Post, Comment, Tag, Category, Contact
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -27,8 +27,13 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('cat_name', 'slug')
     # prepopulated_fields = {'id' : ('cat_name', 'slug')}
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'message')
+    prepopulated_fields = {'name' : ('email', 'message')}
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Comment, CommentAdmin)    
+admin.site.register(Comment, CommentAdmin)
+admin.site.register(Contact, ContactAdmin)    
 # admin.site.register(Post, PostAdmin) 

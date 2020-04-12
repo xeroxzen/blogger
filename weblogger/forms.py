@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Post, Comment, Tag, Category
+from .models import Post, Comment, Tag, Category, Contact
 from django.contrib import admin
 from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
@@ -23,3 +23,8 @@ STATUS_CHOICE=[
         ('Draft', 'Draft'),
         ('Published', 'Published')
     ]
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'message']
