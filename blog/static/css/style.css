@@ -33,6 +33,9 @@ a:hover{
   text-decoration-line: none;
   color:orange;
 }
+li a:hover{
+  color:orange;
+}
 
 .comments{
   font-family: arial;
@@ -62,6 +65,29 @@ a:hover{
  font-family: Georgia;
  font-size: 14px;
 }
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="time"]:focus,
+input[type="checkbox"]:focus,
+input[type="radio"]:focus,
+input[type="file"]:focus,
+input[type="image"]:focus,
+input[type="date"]:focus,
+input[type="datetime-local"]:focus,
+input[type="range"]:focus,
+input[type="reset"]:focus,
+input[type=select]:focus,
+input[type="number"]:focus,
+input[type="textarea"]:focus,
+input[type="submit"]:hover,
+select:focus,
+textarea:focus {
+  border-color: #8a4680;
+  box-shadow: 0 0 0 1px #8a4680;
+}
 
 @media only screen and (min-width: 300px) and (max-width: 767px) {
  .title {
@@ -71,6 +97,9 @@ a:hover{
     font-family: Georgia;
     font-size: 12px;
     background-color:#DCDCDC;
+  }
+  ul.navbar-nav li a{
+    color:#000;
   }
   .subtitle{
     font-size: 14px;
@@ -108,6 +137,24 @@ a:hover{
     font-size: 17px;
   }
 }
+/* Icon */
+
+	.icon {
+		text-decoration: none;
+		border-bottom: none;
+		position: relative;
+    text-align: center;
+    float:center;
+	}
+
+		.icon:before {
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-font-smoothing: antialiased;
+			font-family: FontAwesome;
+			font-style: normal;
+			font-weight: normal;
+			text-transform: none !important;
+		}
 
 /* @media only screen and (min-width: 300px) and (max-width: 1023px) {
  .post-title h1, h2, h3, h4, h5, h6{
