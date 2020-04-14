@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Post, Comment, Tag, Category, Contact
+from .models import Post, Comment, Tag, Category, Contact, NewsLetter
 from django.contrib import admin
 from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
@@ -17,7 +17,12 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('name', 'email', 'website','comment')   
+        fields = ('name', 'email', 'website','comment')
+
+class NewsletterForm(forms.ModelForm):
+    class Meta:
+        model = NewsLetter
+        fields = ['username', 'your_email']           
 
 STATUS_CHOICE=[
         ('Draft', 'Draft'),

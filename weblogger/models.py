@@ -104,6 +104,23 @@ class Tag(models.Model):
     def get_absolute_url(self):
         return reverse("Tag_detail", kwargs={"pk": self.pk})
 
+class NewsLetter(models.Model):
+    username = models.CharField(max_length=50)
+    your_email = models.EmailField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    active= models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.your_email
+
+    class Meta:
+        verbose_name_plural = 'Mail List'
+
+    def get_absolute_url(self):
+        return reverse("NewsLetter_detail", kwargs={"pk": self.pk})
+            
+    
+
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()

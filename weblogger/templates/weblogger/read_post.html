@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<!-- <div class="container"> -->
+<!-- This is the post section -->
     <div class="col-md-12 card mb-4  mt-3 ">
       <div class="card-body">
 
@@ -45,17 +45,33 @@
 
       </div>
     </div>
+    <!-- Post section ends here -->
+    <hr>
 
-  <br>
+<!-- Newsletter -->
+
+        <div class="card text-warning bg-secondary mb-3" style="width: 30rem;">
+          <div class="card-header">
+            <h5>Join Our Mailing List</h5>
+          </div>
+          <div class="card-body">
+            <form method="post">
+              {{ newsletter_form|crispy}}
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary">{{action}}</button>
+            </form>
+          </div>
+        </div>
+<!-- End of the Newsletter -->
+
   <hr>
 
+<!-- Comments start here -->
   <div class="col-md-12 mb-3  mt-3">
     <h3 class='comments-count'>{{ comments.count }} Comment{{comments.count | pluralize:"s" }}</h3>
   </div>
-<!-- </div> -->
-<!-- Comments End here -->
-<!-- <div class="container"> -->
-  <div class="col-md-12 card mb-4  mt-3 ">
+
+  <div class="card col-md-12 mb-4 mt-3 ">
       <div class="card-body">
         {% for comment in comments %}
         <div class="comments" style="padding: 10px;">
@@ -70,8 +86,7 @@
         {% endfor %}
       </div>
   </div>
-  <div class="col-md-12 card mb-4  mt-3 ">
-    <!-- <div class="card-body"> -->
+  <div class="card text-white bg-secondary col-md-12 mb-4  mt-3 ">
       {% if new_comment %}
       <div class="alert alert-success" role="alert">
         Your comment is awaiting moderation
@@ -86,5 +101,6 @@
       <br>
       {% endif %}
     </div>
+    <!-- Comments End here -->
     <br>
 {% endblock%}
