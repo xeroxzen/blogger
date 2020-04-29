@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
+# import django_heroku
 # from ckeditor.widgets import CKEditorWidget
 
 MESSAGE_TAGS = {
@@ -40,6 +41,7 @@ SECRET_KEY = 'u7h9r0g5x@k0(y-^z@+e8nb_hh@9fe8=-sg5=j&2%a&ag&$$x^'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# ".herokuapp.com"
 
 # SECURE_REFERRER_POLICY = True
 # CSRF_COOKIE_SECURE = True
@@ -180,4 +182,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
+# django_heroku.settings(locals())
 # LOGIN_REDIRECT_URL = '/'

@@ -15,7 +15,7 @@
     </div>
     <div class="caption">
       <!-- <h5>{{post.title}}</h5> -->
-      <h5 class="card-title"><a class='post-title' href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h5>
+      <h5 class="card-title"><a class='post-title' href="{% url 'post_detail' post.slug %}">{{ post.title_output }}</a></h5>
       <p>{{post.content|truncatechars:200|safe}}</p>
       <!-- <p>
         <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary" role="button">Read More</a>

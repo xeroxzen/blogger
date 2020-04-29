@@ -45,7 +45,10 @@ class Post(models.Model):
         return reverse("Post_detail", kwargs={"pk": self.pk})
 
     def snippet(self):
-        return self.content[0:200]    
+        return self.content[0:200]
+
+    def title_output(self):
+        return self.title.title()   
 
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
