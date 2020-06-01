@@ -94,6 +94,7 @@ def read_post(request, slug):
 
     context={
         'post':post,
+        'title':post.title,
         'comments':comments,
         'new_comment': new_comment,
         'comment_form': comment_form,
@@ -103,7 +104,7 @@ def read_post(request, slug):
     }
     return render(request, template, context)
 
-@login_required
+# @login_required
 def post_form(request):
     form = PostForm()
     if request.method == 'POST':
@@ -125,7 +126,8 @@ def post_form(request):
         form = PostForm()
 
     context={
-        'form':form
+        'form':form,
+        'button':'Post'
     }
 
     return render(request, 'weblogger/form.html', context)
@@ -167,4 +169,4 @@ def contact(request):
         'title': 'Get In Touch'
     }
 
-    return render(request, 'weblogger/form.html', context)
+    return render(request, 'weblogger/contact.html', context)

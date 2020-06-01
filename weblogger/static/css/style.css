@@ -24,19 +24,6 @@ body{
 img:hover{
   /* something goes here */
 }
-a{
-  text-decoration-style: none;
-  text-decoration-line: none;
-}
-a:hover{
-  text-decoration-style: none;
-  text-decoration-line: none;
-  color:orange;
-}
-li a:hover{
-  color:orange;
-}
-
 .comments{
   font-family: arial;
   font-size: 13px;
@@ -119,6 +106,11 @@ textarea:focus {
     font-family: serif;
     font-size: 70%;
   }
+  .post-title a:hover{
+    text-decoration: none;
+    text-decoration-color: orange;
+  }
+
   .card-subtitle{
     font-weight:200;
     font-family: Georgia;
@@ -155,6 +147,18 @@ textarea:focus {
 			font-weight: normal;
 			text-transform: none !important;
 		}
+a{
+  text-decoration-style: none;
+  text-decoration-line: none;
+}
+a:hover{
+  text-decoration-style: none;
+  /*text-decoration-line: none;*/
+  color:orange;
+}
+li a:hover{
+  color:orange;
+}    
 
 /* @media only screen and (min-width: 300px) and (max-width: 1023px) {
  .post-title h1, h2, h3, h4, h5, h6{

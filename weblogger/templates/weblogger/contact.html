@@ -1,0 +1,15 @@
+{% extends 'weblogger/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="card text-info bg-secondary col-md-8">
+
+  <h3 class='card-title'>{{title}}</h3>
+  <form action="." method="post" enctype="multipart/form-data">
+    {{ form|crispy }}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">{{button}}</button>
+  </form>
+</div>
+  <br>
+{% endblock %}
