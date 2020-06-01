@@ -1,0 +1,14 @@
+{% extends 'weblobber/base.html' %}
+
+{% for tweet in tweets %}
+<tr>
+    <th scope="row">{{ tweet.tweet_text }} {% if tweet.is_active %}<span class="badge badge-pill badge-success">Active</span>{% endif %}</th>
+    <td style="white-space:nowrap;">{{ tweet.published_date }}</td>
+    <td>{% if tweet.is_active %}
+    <a class="btn btn-primary btn-sm" href="{% url 'tweet_set_inactive' pk=tweet.tweet_id %}" role="button">Deactivate</a>
+    {% else %}
+    <a class="btn btn-success btn-sm" href="{% url 'tweet_set_active' pk=tweet.tweet_id %}" role="button">Activate</a>
+    {% endif %}
+    </td>
+</tr>
+{% endfor %}

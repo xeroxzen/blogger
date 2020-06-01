@@ -151,6 +151,37 @@ class CategoryListView(ListView):
         return Post.objects.filter(category_id=self.kwargs.get('pk'))
 
 
+@login_required
+def tweet_list(request):
+    tweets = Tweet.objects.order_by('-published_date')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(tweets, 10)
+    try:
+        tweets = paginator.page(page)
+    except PageNotAnInteger:
+        tweets = paginator.page(1)
+    except EmptyPage:
+        tweets = paginator.page(paginator.num_pages)
+    return render(request, 'weblogger/tweets.html', {'tweets': tweets})
+
+
+@login_required
+def tweet_set_inactive(request, pk):
+    set_inactive(pk)
+    return redirect('tweets')
+
+
+@login_required
+def tweet_set_active(request, pk):
+    set_active(pk)
+    return redirect('tweets')
+
+
+@login_required
+def tweet_fetch(request):
+    save_to_db()
+    return redirect('tweets')
+
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)

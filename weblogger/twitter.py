@@ -19,3 +19,12 @@ def save_to_db():
                 new_tweet = Tweet(tweet_id=original_tweet.id, tweet_text=original_tweet.text,
                                   published_date=original_tweet.created_at, is_active=True)
                 new_tweet.save()
+
+
+def set_inactive(pk):
+    Tweet.objects.filter(tweet_id=pk).update(is_active=False)
+
+
+def set_active(pk):
+    Tweet.objects.filter(tweet_id=pk).update(is_active=True)
+
