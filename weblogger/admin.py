@@ -1,7 +1,7 @@
 from django.contrib import admin
 # from django import forms
 # from ckeditor.widgets import CKEditorWidget
-from .models import Post, Comment, Tag, Category, NewsLetter, Contact
+from .models import Post, Comment, Tag, Category, NewsLetter, Tweet, Contact
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -36,6 +36,14 @@ class NewsLetterAdmin(admin.ModelAdmin):
     def approve_newsletter(self, request, queryset):
         queryset.update(active=True)    
 
+class TweetAdmin(admin.ModelAdmin):
+    list_display=('tweet_id', 'tweet_text', 'published_date', 's_active')
+    search_fields=('tweet_id', 'tweet_text')
+    actions=['approve_tweet']
+
+    def approve_tweet(self, request, query_set):
+        query_set.update(is_active=True)
+
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'message')
     prepopulated_fields = {'name' : ('email', 'message')}
@@ -45,4 +53,5 @@ admin.site.register(Tag, TagAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Contact, ContactAdmin)    
-admin.site.register(NewsLetter, NewsLetterAdmin) 
+admin.site.register(NewsLetter, NewsLetterAdmin)
+admin.site.register(Tweet, TweetAdmin) 
