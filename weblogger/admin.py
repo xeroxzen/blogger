@@ -37,7 +37,7 @@ class NewsLetterAdmin(admin.ModelAdmin):
         queryset.update(active=True)    
 
 class TweetAdmin(admin.ModelAdmin):
-    list_display=('tweet_id', 'tweet_text', 'published_date', 's_active')
+    list_display=('tweet_id', 'tweet_text', 'published_date', 'is_active')
     search_fields=('tweet_id', 'tweet_text')
     actions=['approve_tweet']
 
